@@ -1,5 +1,5 @@
 import 'package:conversor_criptomoedas/models/criptomoeda_model.dart';
-import 'package:conversor_criptomoedas/views/home/components/teste_component_2.dart';
+import 'package:conversor_criptomoedas/views/pages/calculadora/calculadora_moeda.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +13,7 @@ class MoedaBlock extends StatelessWidget{
 
   Route _createRoute() {
   return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => FirstScreen(),
+    pageBuilder: (context, animation, secondaryAnimation) => CalculadoraMoeda(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(0.0, 1.0);
       const end = Offset.zero;

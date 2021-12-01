@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:conversor_criptomoedas/models/criptomoeda_model.dart';
 import 'package:conversor_criptomoedas/services/mercadobitcoin_api_service.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +17,22 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   MercadoBitcoinBloc bloc = MercadoBitcoinBloc();
+  List<Widget>_controllerListMoedasBlocks = [];
+  List<Map<String, dynamic>> moedas = [{'sigla':'BTC', 'nome': 'Bitcoin'}, {'sigla':'ETH', 'nome':'Etherium'}];
+
+  @override
+  void initState() {
+    //Inicializa loading
+    //Carrega os estados iniciais aqui
+    inicializaBlocosMoedas();
+  }
+
+  void inicializaBlocosMoedas() async {
+    moedas.forEach((element) {
+      print(element['sigla']);
+      bloc.entrada.add(element['sigla']);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,37 +40,42 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            
-            StreamBuilder<CriptoMoeda>(
-              stream: bloc.saida,
-              initialData: CriptoMoeda.emptyClass(),
-              builder: (context, snapshot){
-                if(snapshot.hasError){
-                  return Text("Erro!");
+      body: 
+          StreamBuilder<CriptoMoeda>(
+            stream: bloc.saida,
+            initialData: CriptoMoeda.emptyClass(),
+            builder: (context, snapshot){
+              if(snapshot.hasError){
+                return const Text("Erro!");
+              }
+              CriptoMoeda? moeda = snapshot.data;
+              if(moeda?.high == "" || moeda?.high == null){
+                return const Text("");
+              }
+              //return MoedaBlock('assets/images/bitcoin.png', moeda);
+              
+              /**teste */
+              _controllerListMoedasBlocks.add(MoedaBlock('assets/images/bitcoin.png', moeda));
+              return ListView.builder(
+                itemCount: _controllerListMoedasBlocks.length,
+                itemBuilder: (BuildContext ctxt, int index) {
+                  return _controllerListMoedasBlocks[index];
                 }
-                CriptoMoeda? moeda = snapshot.data;
-                if(moeda?.high == "" || moeda?.high == null){
-                  return Text("");
-                }
-                return MoedaBlock('assets/images/bitcoin.png', moeda);
-              },
-            ),
-            /*MoedaBlock('assets/images/bitcoin.png', ),
-            MoedaBlock('assets/images/etherium.png', )*/
-          ],
-        ),
-      ),
+              );
+            },
+          ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-          bloc.entrada.add('');
+          bloc.entrada.add('ETH');
+          //_controllerListView.add("G");
+          /*setState(() {
+            
+          });*/
         },
         tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.calculate_outlined),        
       ),
+      
     );
   }
 }
