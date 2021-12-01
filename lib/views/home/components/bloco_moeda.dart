@@ -1,4 +1,5 @@
 import 'package:conversor_criptomoedas/models/criptomoeda_model.dart';
+import 'package:conversor_criptomoedas/views/home/components/teste_component_2.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
@@ -8,12 +9,35 @@ class MoedaBlock extends StatelessWidget{
 
   MoedaBlock(this.imageLocation, this.dadosMoeda);
 
- NumberFormat formatter = NumberFormat("00.0000");
+  NumberFormat formatter = NumberFormat("00.0000");
+
+  Route _createRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => FirstScreen(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
+}
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(20),
-      child: Center(
+      child: InkWell(
+        splashColor: Color.fromARGB(255, 12, 45, 71),
+        onTap: (){
+          Navigator.of(context).push(_createRoute()); 
+        },
         child: Column(
           children: [
             Container(

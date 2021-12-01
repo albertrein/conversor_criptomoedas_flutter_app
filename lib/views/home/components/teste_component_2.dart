@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'counter.dart';
 import 'image_carousel.dart';
 
-void main() {
-  runApp(FirstScreen());
-}
 
 class FirstScreen extends StatefulWidget {
   @override
@@ -25,10 +22,11 @@ class _FirstScreen extends State<FirstScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           elevation: 0,
-          backgroundColor: Colors.amber[200],
+          backgroundColor: Colors.transparent,
           leading: Row(
             children: <Widget>[
               SizedBox(
@@ -39,24 +37,14 @@ class _FirstScreen extends State<FirstScreen> {
                 icon: const Icon(
                   Icons.arrow_back,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
               ),
             ],
           ),
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(
-                Icons.shopping_cart,
-                color: Colors.white,
-              ),
-              onPressed: () {},
-            ),
-            SizedBox(
-              width: 20.0,
-            ),
-          ],
         ),
-        backgroundColor: Colors.amber[200],
+        backgroundColor: Colors.transparent,
         body: ListView(
           children: <Widget>[
             Column(
@@ -87,14 +75,14 @@ class _FirstScreen extends State<FirstScreen> {
                             height: 20.0,
                           ),
                           Text(
-                            'Mango',
+                            'BTC',
                             style: TextStyle(
                                 fontSize: 30.0, fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
                             height: 10.0,
                           ),
-                          Text('1 each'),
+                          Text('Bitcoin'),
                           SizedBox(
                             height: 20.0,
                           ),
@@ -103,7 +91,7 @@ class _FirstScreen extends State<FirstScreen> {
                             height: 30.0,
                           ),
                           Text(
-                            'Product Description',
+                            'Calculadora',
                             style: TextStyle(
                                 fontSize: 20.0, fontWeight: FontWeight.bold),
                           ),
@@ -152,7 +140,7 @@ class _FirstScreen extends State<FirstScreen> {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20.0)),
                                 height: 70.0,
-                                minWidth: 260.0,
+                                minWidth: 200.0,
                                 child: RaisedButton(
                                   elevation: 0.0,
                                   color: Colors.amber[300],

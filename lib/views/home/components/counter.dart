@@ -75,7 +75,7 @@ class _CounterDesign extends State<CounterDesign> {
           'Rs $_amt',
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 30.0,
+            fontSize: 25.0,
           ),
         )),
       ],
