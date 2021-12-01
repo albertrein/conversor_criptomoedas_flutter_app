@@ -10,8 +10,11 @@ class MercadoBitcoinBloc{
   Stream<CriptoMoeda> get saida => _streamController.stream.asyncMap((siglaMoeda) => _buscaCotacaoMoeda(siglaMoeda));
 
   Future<CriptoMoeda> _buscaCotacaoMoeda(String siglaMoeda) async{
-    MercadoBitcoin apiCriptomoedaBitcoin = MercadoBitcoin(siglaMoeda);
+    List siglaNomeMoeda = siglaMoeda.split(',');
+    MercadoBitcoin apiCriptomoedaBitcoin = MercadoBitcoin(siglaNomeMoeda[0]);
     CriptoMoeda response = await apiCriptomoedaBitcoin.getTickerCoin();
+    response.siglaMoeda = siglaNomeMoeda[0];
+    response.nomeMoeda = siglaNomeMoeda[1];
     return response;
   }
 }

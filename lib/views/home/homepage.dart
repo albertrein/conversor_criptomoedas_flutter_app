@@ -30,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void inicializaBlocosMoedas() async {
     moedas.forEach((element) {
       print(element['sigla']);
-      bloc.entrada.add(element['sigla']);
+      bloc.entrada.add(element['sigla']+','+element['nome']);
     });
   }
 
@@ -54,8 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
               }
               //return MoedaBlock('assets/images/bitcoin.png', moeda);
               
-              /**teste */
-              _controllerListMoedasBlocks.add(MoedaBlock('assets/images/bitcoin.png', moeda));
+              _controllerListMoedasBlocks.add(MoedaBlock(moeda));
               return ListView.builder(
                 itemCount: _controllerListMoedasBlocks.length,
                 itemBuilder: (BuildContext ctxt, int index) {

@@ -4,10 +4,10 @@ import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
 class MoedaBlock extends StatelessWidget{
-  String imageLocation = "";
+  String imageLocation = "assets/images/";
   CriptoMoeda ?dadosMoeda;
 
-  MoedaBlock(this.imageLocation, this.dadosMoeda);
+  MoedaBlock(this.dadosMoeda);
 
   NumberFormat formatter = NumberFormat("00.0000");
 
@@ -57,11 +57,11 @@ class MoedaBlock extends StatelessWidget{
                       children: [
                       Column(
                         children: [
-                          Text('BTC',style: TextStyle(fontSize: 40,fontWeight: FontWeight. bold, color: Colors.blue)),
-                          Text('Bitcoin',  style: TextStyle(fontSize: 20, color: Colors.blue))
+                          Text(dadosMoeda!.siglaMoeda!,style: TextStyle(fontSize: 40,fontWeight: FontWeight. bold, color: Colors.blue)),
+                          Text(dadosMoeda!.nomeMoeda!,  style: TextStyle(fontSize: 20, color: Colors.blue))
                         ],
                       ),
-                      Padding(padding: EdgeInsets.only(left: 20), child: Image.asset(imageLocation, width: 70,),)
+                      Padding(padding: EdgeInsets.only(left: 20), child: Image.asset(imageLocation+dadosMoeda!.nomeMoeda!+".png", width: 70,),)
                       ],
                     ),
                   ),

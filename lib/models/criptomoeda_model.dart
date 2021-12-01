@@ -6,6 +6,8 @@ class CriptoMoeda{
   String sell;
   String open;
   int date;
+  String? siglaMoeda;
+  String? nomeMoeda;
 
   CriptoMoeda({
    required this.high,
