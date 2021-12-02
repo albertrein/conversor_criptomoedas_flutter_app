@@ -93,8 +93,7 @@ class _CalculadoraMoeda extends State<CalculadoraMoeda> {
                           ),
                           Text(
                             widget.moeda!.siglaMoeda!,
-                            style: TextStyle(
-                                fontSize: 30.0, fontWeight: FontWeight.bold),
+                            style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
                             height: 10.0,

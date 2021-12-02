@@ -24,11 +24,11 @@ class MyApp extends StatelessWidget {
         const Locale('pt', ''), 
       ],
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Conversor Criptomoeda App',
       theme: ThemeData(
         
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Conversor Criptomoeda'),
     );
   }
 }

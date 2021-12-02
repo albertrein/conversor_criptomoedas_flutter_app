@@ -1,4 +1,5 @@
 import 'package:conversor_criptomoedas/models/criptomoeda_model.dart';
+import 'package:conversor_criptomoedas/views/home/components/menu_component.dart';
 import 'package:flutter/material.dart';
 import 'bloc/mercadobitcoin_bloc.dart';
 import 'components/bloco_moeda.dart';
@@ -27,9 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    //Inicializa loading
     _controllerListMoedasBlocks.add(_circularLoading());
-    //Carrega os estados iniciais aqui
     _inicializaBlocosMoedas();
   }
 
@@ -52,8 +51,21 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Menu(),
       appBar: AppBar(
         title: Text(widget.title),
+        actions: [
+          IconButton(
+              icon: const Icon(Icons.restart_alt_outlined),
+              iconSize: 30,
+              onPressed: () {
+                //Reload itens
+                _controllerListMoedasBlocks = [];
+                _controllerListMoedasBlocks.add(_circularLoading());
+                _inicializaBlocosMoedas();
+              },
+            )
+        ]
       ),
       body: 
           StreamBuilder<CriptoMoeda>(
