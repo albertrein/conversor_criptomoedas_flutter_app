@@ -1,3 +1,4 @@
+import 'package:conversor_criptomoedas/views/pages/moedas_persistencia/moedas_persistencia_page.dart';
 import 'package:flutter/material.dart';
 
 class Menu extends StatelessWidget {
@@ -27,7 +28,9 @@ class Menu extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.library_books_outlined),
             title: const Text('Moedas disponíveis'),
-            onTap: () => {},
+            onTap: () async => {
+              await Navigator.push(context, MaterialPageRoute(builder: (context) => const MoedasPersistencia()))    
+            },
           ),
           ListTile(
             leading: const Icon(Icons.class__outlined),
