@@ -20,13 +20,13 @@ class CriptoMoeda{
   });
 
   factory CriptoMoeda.fromMap(Map<String, dynamic> dadosJson) => CriptoMoeda(
-    high : dadosJson['high'],
-    vol : dadosJson['vol'],
-    last : dadosJson['last'],
-    buy : dadosJson['buy'],
-    sell : dadosJson['sell'],
-    open : dadosJson['open'],
-    date : dadosJson['date']
+    high : dadosJson.containsKey("high") ? dadosJson['high']: "",
+    vol : dadosJson.containsKey("vol")?  dadosJson['vol']: "",
+    last : dadosJson.containsKey("last")? dadosJson['last']: "",
+    buy : dadosJson.containsKey("buy")?  dadosJson['buy']: "",
+    sell : dadosJson.containsKey("sell")? dadosJson['sell']: "",
+    open : dadosJson.containsKey("open")? dadosJson['open']: "",
+    date : dadosJson.containsKey("date")? dadosJson['date']: 0,
   );
 
   factory CriptoMoeda.emptyClass() => CriptoMoeda(
@@ -38,6 +38,13 @@ class CriptoMoeda{
     open : "",
     date : 0
   );
+
+  bool isClassEmpty(){
+    if(high == "" && vol == "" && last == "" && buy == "" && sell == "" && open == "" && date == 0){
+      return true;
+    }
+    return false;
+  }
 
   @override
   String toString() {

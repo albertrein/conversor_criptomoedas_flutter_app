@@ -18,20 +18,30 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   MercadoBitcoinBloc bloc = MercadoBitcoinBloc();
   List<Widget>_controllerListMoedasBlocks = [];
-  List<Map<String, dynamic>> moedas = [{'sigla':'BTC', 'nome': 'Bitcoin'}, {'sigla':'ETH', 'nome':'Etherium'}];
+  List<Map<String, dynamic>> moedas = [{'sigla':'BTC', 'nome': 'Bitcoin'}, {'sigla':'ETH', 'nome':'Etherium'}, {'sigla':'ETI', 'nome':'DOges'}];
 
   @override
   void initState() {
     //Inicializa loading
+    _controllerListMoedasBlocks.add(_circularLoading());
     //Carrega os estados iniciais aqui
-    inicializaBlocosMoedas();
+    _inicializaBlocosMoedas();
   }
 
-  void inicializaBlocosMoedas() async {
+  void _inicializaBlocosMoedas() {
     moedas.forEach((element) {
       print(element['sigla']);
-      bloc.entrada.add(element['sigla']+','+element['nome']);
+      bloc.entrada.add(element['sigla']+','+element['nome']);      
     });
+    _controllerListMoedasBlocks.removeLast();
+  }
+
+  Widget _circularLoading() {
+    return Container(
+      height: 15.0,
+      width: 15.0,
+      child: CircularProgressIndicator(),
+    );
   }
 
   @override
@@ -49,16 +59,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 return const Text("Erro!");
               }
               CriptoMoeda? moeda = snapshot.data;
-              if(moeda?.high == "" || moeda?.high == null){
-                return const Text("");
-              }
-              //return MoedaBlock('assets/images/bitcoin.png', moeda);
-              
-              _controllerListMoedasBlocks.add(MoedaBlock(moeda));
+              if(!moeda!.isClassEmpty()){
+                _controllerListMoedasBlocks.add(MoedaBlock(moeda));
+                
+              }              
               return ListView.builder(
                 itemCount: _controllerListMoedasBlocks.length,
                 itemBuilder: (BuildContext ctxt, int index) {
-                  return _controllerListMoedasBlocks[index];
+                  return Column(
+                    children: [
+                      _controllerListMoedasBlocks[index]
+                    ],
+                  );
+                  //return _controllerListMoedasBlocks[index];
                 }
               );
             },

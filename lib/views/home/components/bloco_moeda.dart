@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:conversor_criptomoedas/models/criptomoeda_model.dart';
 import 'package:conversor_criptomoedas/views/pages/calculadora/calculadora_moeda.dart';
 import 'package:intl/intl.dart';
@@ -13,7 +15,7 @@ class MoedaBlock extends StatelessWidget{
 
   Route _createRoute() {
   return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => CalculadoraMoeda(),
+    pageBuilder: (context, animation, secondaryAnimation) => CalculadoraMoeda(moeda: dadosMoeda,),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(0.0, 1.0);
       const end = Offset.zero;
@@ -61,7 +63,9 @@ class MoedaBlock extends StatelessWidget{
                           Text(dadosMoeda!.nomeMoeda!,  style: TextStyle(fontSize: 20, color: Colors.blue))
                         ],
                       ),
-                      Padding(padding: EdgeInsets.only(left: 20), child: Image.asset(imageLocation+dadosMoeda!.nomeMoeda!+".png", width: 70,),)
+                      Padding(
+                        padding: EdgeInsets.only(left: 20),
+                        child: File(imageLocation+dadosMoeda!.nomeMoeda!+".png").existsSync() ? Image.asset(imageLocation+"default.png", width: 70,): Image.asset(imageLocation+dadosMoeda!.nomeMoeda!+".png", width: 70,),)
                       ],
                     ),
                   ),

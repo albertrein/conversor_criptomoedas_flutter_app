@@ -1,9 +1,14 @@
+import 'package:conversor_criptomoedas/models/criptomoeda_model.dart';
 import 'package:flutter/material.dart';
 import 'counter.dart';
 
 class CalculadoraMoeda extends StatefulWidget {
-  const CalculadoraMoeda({Key? key}) : super(key: key);
+  late final CriptoMoeda? moeda;
 
+  //CalculadoraMoeda(CriptoMoeda? dadosMoeda, {Key? key, required this.moeda}) : super(key: key);
+  CalculadoraMoeda({Key? key, this.moeda}) : super(key: key){
+    
+  }
   @override
   State<StatefulWidget> createState() {
     return _CalculadoraMoeda();
@@ -11,15 +16,9 @@ class CalculadoraMoeda extends StatefulWidget {
 }
 
 class _CalculadoraMoeda extends State<CalculadoraMoeda> {
-  bool _isFavorited = true;
-   var _searchCepController = TextEditingController();
-   bool _enableField = true;
-  void _toggleFavorite() {
-    setState(() {
-      _isFavorited = !_isFavorited;
-    });
-  }
-
+  TextEditingController _reaisController = TextEditingController();
+  TextEditingController _moedaController = TextEditingController();
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -77,14 +76,14 @@ class _CalculadoraMoeda extends State<CalculadoraMoeda> {
                             height: 20.0,
                           ),
                           Text(
-                            'BTC',
+                            widget.moeda!.siglaMoeda!,
                             style: TextStyle(
                                 fontSize: 30.0, fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
                             height: 10.0,
                           ),
-                          Text('Bitcoin'),
+                          Text(widget.moeda!.nomeMoeda!,),
                           SizedBox(
                             height: 20.0,
                           ),
@@ -102,25 +101,25 @@ class _CalculadoraMoeda extends State<CalculadoraMoeda> {
                           Row(
                             children: [
                               Text('Volume:', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold)),
-                              Text('123123123')
+                              Text(widget.moeda!.vol)
                             ],
                           ),
                           Row(
                             children: [
                               Text('Venda:', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold)),
-                              Text('123123123')
+                              Text(widget.moeda!.sell)
                             ],
                           ),
                           Row(
                             children: [
                               Text('Compra:', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold)),
-                              Text('123123123')
+                              Text(widget.moeda!.buy)
                             ],
                           ),
                           Row(
                             children: [
                               Text('Alta:', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold)),
-                              Text('123123123')
+                              Text(widget.moeda!.high)
                             ],
                           ),
                           SizedBox(
@@ -130,7 +129,7 @@ class _CalculadoraMoeda extends State<CalculadoraMoeda> {
                             'Conversor',
                             style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                           ),
-                          Text('Converter Reais para BTC'),
+                          Text('Converter Reais para '+widget.moeda!.siglaMoeda!),
                           SizedBox(
                             height: 20.0,
                           ),
@@ -149,14 +148,13 @@ class _CalculadoraMoeda extends State<CalculadoraMoeda> {
                                     hintText: "Reais",
                                     fillColor: Colors.white70
                                   ),
-                                  autofocus: true,
                                   keyboardType: TextInputType.number,
                                   textInputAction: TextInputAction.done,
-                                  controller: _searchCepController,
-                                  enabled: _enableField,
+                                  controller: _reaisController,
+                                  enabled: true,
                                 ),
                               ),
-                              Text("BTC ", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold))
+                              Text(widget.moeda!.siglaMoeda!, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold))
                             ],
                           ),
                           SizedBox(
@@ -179,7 +177,7 @@ class _CalculadoraMoeda extends State<CalculadoraMoeda> {
                           ), 
                           Padding(
                             padding: EdgeInsets.only(top: 30, bottom: 10),
-                            child: Text('Converter BTC para Reais'),
+                            child: Text('Converter '+widget.moeda!.nomeMoeda!+' para Reais'),
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -193,14 +191,13 @@ class _CalculadoraMoeda extends State<CalculadoraMoeda> {
                                     ),
                                     filled: true,
                                     hintStyle: TextStyle(color: Colors.grey[800]),
-                                    hintText: "BTC",
+                                    hintText: widget.moeda!.siglaMoeda,
                                     fillColor: Color.fromARGB(179, 24, 23, 23)
                                   ),
-                                  autofocus: true,
                                   keyboardType: TextInputType.number,
                                   textInputAction: TextInputAction.done,
-                                  controller: _searchCepController,
-                                  enabled: _enableField,
+                                  controller: _moedaController,
+                                  enabled: true,
                                 ),
                               ),
                               Text("R\$ ", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold))
