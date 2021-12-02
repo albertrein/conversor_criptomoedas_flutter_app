@@ -1,14 +1,14 @@
 import 'package:conversor_criptomoedas/models/criptomoeda_model.dart';
 import 'package:flutter/material.dart';
+import 'calculadora_bloc/calculadora_page_bloc.dart';
 import 'counter.dart';
 
 class CalculadoraMoeda extends StatefulWidget {
   late final CriptoMoeda? moeda;
 
-  //CalculadoraMoeda(CriptoMoeda? dadosMoeda, {Key? key, required this.moeda}) : super(key: key);
-  CalculadoraMoeda({Key? key, this.moeda}) : super(key: key){
-    
-  }
+  
+  CalculadoraMoeda({Key? key, this.moeda}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _CalculadoraMoeda();
@@ -18,7 +18,12 @@ class CalculadoraMoeda extends StatefulWidget {
 class _CalculadoraMoeda extends State<CalculadoraMoeda> {
   TextEditingController _reaisController = TextEditingController();
   TextEditingController _moedaController = TextEditingController();
-  
+  CalculadoraBloc calcBloc = CalculadoraBloc();
+  @override
+  void initState() {
+    calcBloc.valorCompra = widget.moeda!.buy;
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -154,7 +159,18 @@ class _CalculadoraMoeda extends State<CalculadoraMoeda> {
                                   enabled: true,
                                 ),
                               ),
-                              Text(widget.moeda!.siglaMoeda!, style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold))
+                              StreamBuilder(
+                                stream: calcBloc.outputMoeda,
+                                initialData: Text(widget.moeda!.siglaMoeda!, style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+                                builder: (context, snapshot){
+                                  if(snapshot.hasError){
+                                    return Text(widget.moeda!.siglaMoeda!, style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold));
+                                  }
+                                  return Flexible(
+                                    child: Text(widget.moeda!.siglaMoeda!+": "+calcBloc.conversaoReaisParaCriptomoeda, style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold))
+                                  );
+                                },
+                              ),                              
                             ],
                           ),
                           SizedBox(
@@ -167,7 +183,9 @@ class _CalculadoraMoeda extends State<CalculadoraMoeda> {
                             child: RaisedButton(
                               elevation: 0.0,
                               color: Colors.amber[300],
-                              onPressed: () {},
+                              onPressed: () {
+                                calcBloc.converteReaisParaCriptomoeda(_reaisController.text);
+                              },
                               child: Text(
                                 'Converter',
                                 style:
@@ -190,9 +208,7 @@ class _CalculadoraMoeda extends State<CalculadoraMoeda> {
                                       borderRadius: BorderRadius.circular(10.0),
                                     ),
                                     filled: true,
-                                    hintStyle: TextStyle(color: Colors.grey[800]),
                                     hintText: widget.moeda!.siglaMoeda,
-                                    fillColor: Color.fromARGB(179, 24, 23, 23)
                                   ),
                                   keyboardType: TextInputType.number,
                                   textInputAction: TextInputAction.done,
@@ -200,7 +216,18 @@ class _CalculadoraMoeda extends State<CalculadoraMoeda> {
                                   enabled: true,
                                 ),
                               ),
-                              Text("R\$ ", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold))
+                              StreamBuilder(
+                                stream: calcBloc.outputCriptomoeda,
+                                initialData: const Text("R\$", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+                                builder: (context, snapshot){
+                                  if(snapshot.hasError){
+                                    return const Text("R\$", style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold));
+                                  }
+                                  return Flexible(
+                                    child: Text("R\$: "+calcBloc.conversaoCriptomoedaParaReais, style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+                                  );
+                                },
+                              ),
                             ],
                           ),
                           SizedBox(
@@ -213,7 +240,7 @@ class _CalculadoraMoeda extends State<CalculadoraMoeda> {
                             child: RaisedButton(
                               elevation: 0.0,
                               color: Colors.amber[300],
-                              onPressed: () {},
+                              onPressed: () {calcBloc.converteCriptomoedaParaReais(_moedaController.text);},
                               child: Text(
                                 'Converter',
                                 style:

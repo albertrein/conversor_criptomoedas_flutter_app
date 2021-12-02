@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:conversor_criptomoedas/models/criptomoeda_model.dart';
+import 'package:flutter/services.dart';
 
 import '../../../services/mercadobitcoin_api_service.dart';
 
@@ -15,6 +16,17 @@ class MercadoBitcoinBloc{
     CriptoMoeda response = await apiCriptomoedaBitcoin.getTickerCoin();
     response.siglaMoeda = siglaNomeMoeda[0];
     response.nomeMoeda = siglaNomeMoeda[1];
+    response.imagemMoeda = await getDevIcon(siglaNomeMoeda[1]);
     return response;
+  }
+}
+
+Future<String> getDevIcon(String nomeMoeda) async {
+  String imageLocation = "assets/images/";
+  try {
+    await rootBundle.load(imageLocation+nomeMoeda+".png");
+    return imageLocation+nomeMoeda+".png";
+  } catch (_) {
+    return "assets/images/default.png";
   }
 }

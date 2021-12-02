@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:conversor_criptomoedas/models/criptomoeda_model.dart';
 import 'package:conversor_criptomoedas/services/mercadobitcoin_api_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'bloc/mercadobitcoin_bloc.dart';
 import 'components/bloco_moeda.dart';
 
@@ -18,7 +19,15 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   MercadoBitcoinBloc bloc = MercadoBitcoinBloc();
   List<Widget>_controllerListMoedasBlocks = [];
-  List<Map<String, dynamic>> moedas = [{'sigla':'BTC', 'nome': 'Bitcoin'}, {'sigla':'ETH', 'nome':'Etherium'}, {'sigla':'ETI', 'nome':'DOges'}];
+  List<Map<String, dynamic>> moedas = [
+    {'sigla':'BTC', 'nome': 'Bitcoin'},
+    {'sigla':'ETH', 'nome':'Etherium'},
+    {'sigla':'ETI', 'nome':'DOges'},
+    {'sigla':'LTC', 'nome':'Litecoin'},
+    {'sigla':'ADA', 'nome':'Cardano'},
+    {'sigla':'UNI', 'nome':'Uniswap'},
+    {'sigla':'USDC', 'nome':'USD Coin'},
+  ];
 
   @override
   void initState() {
@@ -59,9 +68,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 return const Text("Erro!");
               }
               CriptoMoeda? moeda = snapshot.data;
+              
               if(!moeda!.isClassEmpty()){
-                _controllerListMoedasBlocks.add(MoedaBlock(moeda));
-                
+                _controllerListMoedasBlocks.add(MoedaBlock(moeda));                
               }              
               return ListView.builder(
                 itemCount: _controllerListMoedasBlocks.length,

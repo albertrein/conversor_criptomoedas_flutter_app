@@ -8,6 +8,7 @@ class CriptoMoeda{
   int date;
   String? siglaMoeda;
   String? nomeMoeda;
+  String? imagemMoeda;
 
   CriptoMoeda({
    required this.high,

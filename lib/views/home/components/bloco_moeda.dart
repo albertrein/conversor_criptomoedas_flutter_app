@@ -2,11 +2,11 @@ import 'dart:io';
 
 import 'package:conversor_criptomoedas/models/criptomoeda_model.dart';
 import 'package:conversor_criptomoedas/views/pages/calculadora/calculadora_moeda.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
-class MoedaBlock extends StatelessWidget{
-  String imageLocation = "assets/images/";
+class MoedaBlock extends StatelessWidget{  
   CriptoMoeda ?dadosMoeda;
 
   MoedaBlock(this.dadosMoeda);
@@ -57,15 +57,16 @@ class MoedaBlock extends StatelessWidget{
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                      Column(
-                        children: [
-                          Text(dadosMoeda!.siglaMoeda!,style: TextStyle(fontSize: 40,fontWeight: FontWeight. bold, color: Colors.blue)),
-                          Text(dadosMoeda!.nomeMoeda!,  style: TextStyle(fontSize: 20, color: Colors.blue))
-                        ],
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 20),
-                        child: File(imageLocation+dadosMoeda!.nomeMoeda!+".png").existsSync() ? Image.asset(imageLocation+"default.png", width: 70,): Image.asset(imageLocation+dadosMoeda!.nomeMoeda!+".png", width: 70,),)
+                        Column(
+                          children: [
+                            Text(dadosMoeda!.siglaMoeda!,style: TextStyle(fontSize: 40,fontWeight: FontWeight. bold, color: Colors.blue)),
+                            Text(dadosMoeda!.nomeMoeda!,  style: TextStyle(fontSize: 20, color: Colors.blue))
+                          ],
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 20),
+                          child: Image.asset(dadosMoeda!.imagemMoeda!, width: 70,)
+                        )
                       ],
                     ),
                   ),
