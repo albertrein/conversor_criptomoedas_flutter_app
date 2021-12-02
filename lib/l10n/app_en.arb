@@ -5,6 +5,7 @@
   "buy" : "Buy",
   "high" : "High",
   "converter" : "Converter",
+  "converterbutton" : "Converter Button",
   "brlTo" : "Converter BRL to",
   "brl" : "BRL"
 }

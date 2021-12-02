@@ -4,7 +4,8 @@
   "sell" : "Venda",
   "buy" : "Compra",
   "high" : "Alta",
-  "converter" : "Conversor",
+  "converter" : "Converter",
+  "converterbutton" : "botão converter",
   "brlTo" : "Converter Reais para",
   "brl" : "Reais"
 }

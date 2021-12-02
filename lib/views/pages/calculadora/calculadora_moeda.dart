@@ -1,7 +1,6 @@
 import 'package:conversor_criptomoedas/models/criptomoeda_model.dart';
 import 'package:flutter/material.dart';
 import 'calculadora_bloc/calculadora_page_bloc.dart';
-import 'counter.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -104,10 +103,6 @@ class _CalculadoraMoeda extends State<CalculadoraMoeda> {
                           SizedBox(
                             height: 20.0,
                           ),
-                          CounterDesign(),
-                          SizedBox(
-                            height: 30.0,
-                          ),
                           Text(
                             AppLocalizations.of(context)!.data,
                             style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
@@ -188,23 +183,26 @@ class _CalculadoraMoeda extends State<CalculadoraMoeda> {
                           SizedBox(
                             height: 10.0,
                           ),
-                          ButtonTheme(
-                            shape: RoundedRectangleBorder(
+                          Semantics(
+                            child: ButtonTheme(
+                              shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.0)),
-                            height: 60.0,
-                            child: RaisedButton(
-                              elevation: 0.0,
-                              color: Colors.amber[300],
-                              onPressed: () {
-                                calcBloc.converteReaisParaCriptomoeda(_reaisController.text);
-                              },
-                              child: Text(
-                                AppLocalizations.of(context)!.converter,
-                                style:
-                                  TextStyle(fontWeight: FontWeight.bold),
+                                height: 60.0,
+                                child: RaisedButton(
+                                  elevation: 0.0,
+                                  color: Colors.amber[300],
+                                  onPressed: () {
+                                    calcBloc.converteReaisParaCriptomoeda(_reaisController.text);
+                                  },
+                                  child: Text(
+                                    AppLocalizations.of(context)!.converter,
+                                    style:
+                                      TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                ),
                               ),
-                            ),
-                          ), 
+                            label: AppLocalizations.of(context)!.converterbutton,
+                          ),
                           Padding(
                             padding: EdgeInsets.only(top: 30, bottom: 10),
                             child: Text('Converter '+widget.moeda!.nomeMoeda!+' para Reais'),
@@ -245,21 +243,24 @@ class _CalculadoraMoeda extends State<CalculadoraMoeda> {
                           SizedBox(
                             height: 10.0,
                           ),
-                          ButtonTheme(
-                            shape: RoundedRectangleBorder(
+                          Semantics(
+                            child: ButtonTheme(
+                              shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.0)),
-                            height: 60.0,
-                            child: RaisedButton(
-                              elevation: 0.0,
-                              color: Colors.amber[300],
-                              onPressed: () {calcBloc.converteCriptomoedaParaReais(_moedaController.text);},
-                              child: Text(
-                                'Converter',
-                                style:
-                                  TextStyle(fontWeight: FontWeight.bold),
+                              height: 60.0,
+                              child: RaisedButton(
+                                elevation: 0.0,
+                                color: Colors.amber[300],
+                                onPressed: () {calcBloc.converteCriptomoedaParaReais(_moedaController.text);},
+                                child: Text(
+                                  AppLocalizations.of(context)!.converter,
+                                  style:
+                                    TextStyle(fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ),
-                          ),
+                            label: AppLocalizations.of(context)!.converterbutton,
+                          ),                          
                         ],
                       ),
                     ),

@@ -62,7 +62,9 @@ class MoedaBlock extends StatelessWidget{
                         ),
                         Padding(
                           padding: EdgeInsets.only(left: 20),
-                          child: Image.asset(dadosMoeda!.imagemMoeda!, width: 70,)
+                          child: Semantics(
+                            child: Image.asset(dadosMoeda!.imagemMoeda!, width: 70,), label: "Imagem da moeda",
+                          ),
                         )
                       ],
                     ),
@@ -74,20 +76,20 @@ class MoedaBlock extends StatelessWidget{
                       children: [
                         Column(
                           children: [
-                            const Text('Volume', style: TextStyle(fontSize: 16, fontWeight: FontWeight. bold, color: Colors.black54)),
+                            Semantics(child: const Text('Volume', style: TextStyle(fontSize: 16, fontWeight: FontWeight. bold, color: Colors.black54)), label: "Moeda volume",),
                             Text(formatter.format(num.parse(dadosMoeda!.vol)).toString())
                           ],
                         ),
                         Column(
                           children: [
-                            Text('Compra', style: TextStyle(fontSize: 16, fontWeight: FontWeight. bold, color: Colors.black54)),
+                            Semantics(child: const Text('Compra', style: TextStyle(fontSize: 16, fontWeight: FontWeight. bold, color: Colors.black54)), label: "Moeda valor de compra"),
                             Text(formatter.format(num.parse(dadosMoeda!.buy)).toString())
                             
                           ],
                         ),
                         Column(
                           children: [
-                            Text('Venda', style: TextStyle(fontSize: 16, fontWeight: FontWeight. bold, color: Colors.black54)),
+                            Semantics(child: const Text('Venda', style: TextStyle(fontSize: 16, fontWeight: FontWeight. bold, color: Colors.black54)), label: "Moeda valor de venda"),
                             Text(formatter.format(num.parse(dadosMoeda!.sell)).toString())
                           ],
                         ),
