@@ -1,8 +1,5 @@
-import 'dart:io';
-
 import 'package:conversor_criptomoedas/models/criptomoeda_model.dart';
 import 'package:conversor_criptomoedas/views/pages/calculadora/calculadora_moeda.dart';
-import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 

@@ -1,9 +1,5 @@
-import 'dart:convert';
-
 import 'package:conversor_criptomoedas/models/criptomoeda_model.dart';
-import 'package:conversor_criptomoedas/services/mercadobitcoin_api_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'bloc/mercadobitcoin_bloc.dart';
 import 'components/bloco_moeda.dart';
 
@@ -65,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
             initialData: CriptoMoeda.emptyClass(),
             builder: (context, snapshot){
               if(snapshot.hasError){
-                return const Text("Erro!");
+                return const Text("Error!");
               }
               CriptoMoeda? moeda = snapshot.data;
               
@@ -80,23 +76,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       _controllerListMoedasBlocks[index]
                     ],
                   );
-                  //return _controllerListMoedasBlocks[index];
                 }
               );
             },
           ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          bloc.entrada.add('ETH');
-          //_controllerListView.add("G");
-          /*setState(() {
-            
-          });*/
-        },
-        tooltip: 'Increment',
-        child: const Icon(Icons.calculate_outlined),        
-      ),
-      
     );
   }
 }

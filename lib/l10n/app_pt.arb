@@ -1,0 +1,10 @@
+{
+  "data": "Dados",
+  "vol" : "Volume",
+  "sell" : "Venda",
+  "buy" : "Compra",
+  "high" : "Alta",
+  "converter" : "Conversor",
+  "brlTo" : "Converter Reais para",
+  "brl" : "Reais"
+}

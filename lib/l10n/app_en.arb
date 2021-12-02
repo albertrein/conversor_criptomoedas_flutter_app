@@ -1,0 +1,10 @@
+{
+  "data": "Data",
+  "vol" : "Volume",
+  "sell" : "Sell",
+  "buy" : "Buy",
+  "high" : "High",
+  "converter" : "Converter",
+  "brlTo" : "Converter BRL to",
+  "brl" : "BRL"
+}

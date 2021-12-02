@@ -2,6 +2,8 @@ import 'package:conversor_criptomoedas/models/criptomoeda_model.dart';
 import 'package:flutter/material.dart';
 import 'calculadora_bloc/calculadora_page_bloc.dart';
 import 'counter.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CalculadoraMoeda extends StatefulWidget {
   late final CriptoMoeda? moeda;
@@ -28,6 +30,16 @@ class _CalculadoraMoeda extends State<CalculadoraMoeda> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('en', ''), // Inglês
+        const Locale('pt', ''), // Português
+      ],
       home: Scaffold(
         appBar: AppBar(
           elevation: 0,
@@ -97,7 +109,7 @@ class _CalculadoraMoeda extends State<CalculadoraMoeda> {
                             height: 30.0,
                           ),
                           Text(
-                            'Dados',
+                            AppLocalizations.of(context)!.data,
                             style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
@@ -105,25 +117,25 @@ class _CalculadoraMoeda extends State<CalculadoraMoeda> {
                           ),
                           Row(
                             children: [
-                              Text('Volume:', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold)),
+                              Text(AppLocalizations.of(context)!.vol+': ', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold)),
                               Text(widget.moeda!.vol)
                             ],
                           ),
                           Row(
                             children: [
-                              Text('Venda:', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold)),
+                              Text(AppLocalizations.of(context)!.sell+': ', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold)),
                               Text(widget.moeda!.sell)
                             ],
                           ),
                           Row(
                             children: [
-                              Text('Compra:', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold)),
+                              Text(AppLocalizations.of(context)!.buy+': ', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold)),
                               Text(widget.moeda!.buy)
                             ],
                           ),
                           Row(
                             children: [
-                              Text('Alta:', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold)),
+                              Text(AppLocalizations.of(context)!.high+': ', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold)),
                               Text(widget.moeda!.high)
                             ],
                           ),
@@ -131,10 +143,10 @@ class _CalculadoraMoeda extends State<CalculadoraMoeda> {
                             height: 30.0,
                           ),
                           Text(
-                            'Conversor',
+                            AppLocalizations.of(context)!.converter,
                             style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                           ),
-                          Text('Converter Reais para '+widget.moeda!.siglaMoeda!),
+                          Text(AppLocalizations.of(context)!.brlTo+' '+widget.moeda!.siglaMoeda!),
                           SizedBox(
                             height: 20.0,
                           ),
@@ -150,7 +162,7 @@ class _CalculadoraMoeda extends State<CalculadoraMoeda> {
                                     ),
                                     filled: true,
                                     hintStyle: TextStyle(color: Colors.grey[800]),
-                                    hintText: "Reais",
+                                    hintText: AppLocalizations.of(context)!.brl,
                                     fillColor: Colors.white70
                                   ),
                                   keyboardType: TextInputType.number,
@@ -187,7 +199,7 @@ class _CalculadoraMoeda extends State<CalculadoraMoeda> {
                                 calcBloc.converteReaisParaCriptomoeda(_reaisController.text);
                               },
                               child: Text(
-                                'Converter',
+                                AppLocalizations.of(context)!.converter,
                                 style:
                                   TextStyle(fontWeight: FontWeight.bold),
                               ),
