@@ -3,6 +3,8 @@ import 'package:conversor_criptomoedas/views/home/components/menu_component.dart
 import 'package:flutter/material.dart';
 import 'bloc/mercadobitcoin_bloc.dart';
 import 'components/bloco_moeda.dart';
+import 'package:conversor_criptomoedas/helper/moeda_helper.dart';
+import 'package:conversor_criptomoedas/models/moeda_model.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -16,6 +18,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   MercadoBitcoinBloc bloc = MercadoBitcoinBloc();
   List<Widget>_controllerListMoedasBlocks = [];
+  DatabaseHelper moedaHelper = DatabaseHelper();
+ 
   List<Map<String, dynamic>> moedas = [
     {'sigla':'BTC', 'nome': 'Bitcoin'},
     {'sigla':'ETH', 'nome':'Etherium'},
@@ -28,14 +32,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    _controllerListMoedasBlocks.add(_circularLoading());
     _inicializaBlocosMoedas();
+    _controllerListMoedasBlocks.add(_circularLoading());
+    
   }
 
-  void _inicializaBlocosMoedas() {
-    moedas.forEach((element) {
-      print(element['sigla']);
-      bloc.entrada.add(element['sigla']+','+element['nome']);      
+  void _inicializaBlocosMoedas()async {
+    print('asq');
+    List<Moeda> listaMoedas =  await moedaHelper.moedasOrdenadasPorSequencia();
+    print(listaMoedas);
+    listaMoedas.forEach((element) {
+      print(element.sigla);
+      bloc.entrada.add(element.sigla+','+element.nome);      
     });
     _controllerListMoedasBlocks.removeLast();
   }

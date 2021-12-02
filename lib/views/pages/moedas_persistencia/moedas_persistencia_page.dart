@@ -3,6 +3,9 @@ import 'package:conversor_criptomoedas/models/moeda_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:path/path.dart';
+
+import '../insercao_moedas/nova_moeda.dart';
 
 class MoedasPersistencia extends StatefulWidget {
   
@@ -15,8 +18,6 @@ class MoedasPersistencia extends StatefulWidget {
 }
 
 class _MoedasPersistencia extends State<MoedasPersistencia> {
-  TextEditingController _siglaController = TextEditingController();
-  TextEditingController _nomeController = TextEditingController();
   DatabaseHelper moedaHelper = DatabaseHelper();
   List<Moeda> noteList = [];
   late Future<List<Moeda>> _future;
@@ -73,11 +74,11 @@ class _MoedasPersistencia extends State<MoedasPersistencia> {
                       builder: (BuildContext context, AsyncSnapshot 
                        snapshot) {
                         if (snapshot.data == null) {
-                          return Text('Loading');
+                          return Text(AppLocalizations.of(context)!.loading);
                         } else {
                           if (snapshot.data.length < 1) {
                             return Center(
-                              child: Text('No Messages, Create New one'),
+                              child: Text(AppLocalizations.of(context)!.emptyList),
                             );
                           }
                           noteList = snapshot.data;
@@ -114,13 +115,14 @@ class _MoedasPersistencia extends State<MoedasPersistencia> {
                             onReorder: _onReorder,
                           );
                         }
-                      }))
+                      }
+                    )
+                  ),
             ],
           )),
           floatingActionButton: FloatingActionButton(
-            onPressed: _insereMoeda,
-            tooltip: 'Increment',
-            child: const Icon(Icons.add),
+            onPressed: (){ Navigator.push(context, MaterialPageRoute(builder: (context) => NovaMoeda())); },
+            child: Icon(Icons.add),
           ),
       ),
     );
@@ -140,16 +142,9 @@ class _MoedasPersistencia extends State<MoedasPersistencia> {
     });
   }
 
-  void _insereMoeda() async {   
-    Moeda novaMoeda = Moeda("USD", "USDD", 3);
-    await moedaHelper.insereMoeda(novaMoeda);
-    var saidavar  = await  moedaHelper.listaDeTodosAsMoedas();
-    setState(() {
-      _future = moedaHelper.moedasOrdenadasPorSequencia();
-    });
-  }
-
   void _excluirMoeda(String siglaMoedaExclusao) async {
     await moedaHelper.excluiMoeda(siglaMoedaExclusao);
   }
+
+  
 }

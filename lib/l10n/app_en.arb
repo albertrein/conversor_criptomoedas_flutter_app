@@ -7,5 +7,7 @@
   "converter" : "Converter",
   "converterbutton" : "Converter Button",
   "brlTo" : "Converter BRL to",
-  "brl" : "BRL"
+  "brl" : "BRL",
+  "emptyList" : "Empty list",
+  "loading" : "Loading"
 }

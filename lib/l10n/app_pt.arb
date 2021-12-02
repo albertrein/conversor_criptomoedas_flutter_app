@@ -7,5 +7,7 @@
   "converter" : "Converter",
   "converterbutton" : "botão converter",
   "brlTo" : "Converter Reais para",
-  "brl" : "Reais"
+  "brl" : "Reais",
+  "emptyList" : "Lista vazia",
+  "loading" : "Carregando"
 }

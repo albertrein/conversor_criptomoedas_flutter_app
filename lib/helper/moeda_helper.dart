@@ -83,5 +83,15 @@ class DatabaseHelper {
     int result = await db.rawDelete("DELETE FROM $moedaTable WHERE $colSigla LIKE '$siglaExclusao'");
     return result;
   }
+  
+  Future<int> ultimaSequenciaCadastrada() async{
+    final db = await database;
+    var response = await db.rawQuery("SELECT MAX(${colSequencia}) as seq FROM $moedaTable");
+    int maiorValor = 0;
+    response.forEach((element) {
+      maiorValor = int.parse(element['seq'].toString());
+    });
+    return maiorValor;
+  }
 
 }
