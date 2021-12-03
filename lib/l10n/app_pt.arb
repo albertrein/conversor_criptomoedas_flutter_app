@@ -9,5 +9,9 @@
   "brlTo" : "Converter Reais para",
   "brl" : "Reais",
   "emptyList" : "Lista vazia",
-  "loading" : "Carregando"
+  "loading" : "Carregando",
+  "registration" : "Registro de moeda",
+  "initials" : "Digite a sigla",
+  "coinName" : "Digite o nome da moeda",
+  "register" : "Cadastrar"
 }

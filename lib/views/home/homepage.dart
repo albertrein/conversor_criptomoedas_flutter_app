@@ -38,7 +38,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _inicializaBlocosMoedas()async {
-    print('asq');
     List<Moeda> listaMoedas =  await moedaHelper.moedasOrdenadasPorSequencia();
     print(listaMoedas);
     listaMoedas.forEach((element) {
@@ -62,9 +61,10 @@ class _MyHomePageState extends State<MyHomePage> {
       drawer: Menu(),
       appBar: AppBar(
         title: Text(widget.title),
+        backgroundColor: Colors.purple,
         actions: [
           IconButton(
-              icon: const Icon(Icons.restart_alt_outlined),
+              icon: const Icon(Icons.restart_alt_outlined, color: Colors.white,),
               iconSize: 30,
               onPressed: () {
                 //Reload itens

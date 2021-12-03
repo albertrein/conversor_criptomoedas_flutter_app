@@ -56,8 +56,8 @@ class MoedaBlock extends StatelessWidget{
                       children: [
                         Column(
                           children: [
-                            Text(dadosMoeda!.siglaMoeda!,style: TextStyle(fontSize: 40,fontWeight: FontWeight. bold, color: Colors.blue)),
-                            Text(dadosMoeda!.nomeMoeda!,  style: TextStyle(fontSize: 20, color: Colors.blue))
+                            Text(dadosMoeda!.siglaMoeda!,style: TextStyle(fontSize: 40,fontWeight: FontWeight. bold, color: Colors.purple)),
+                            Text(dadosMoeda!.nomeMoeda!,  style: TextStyle(fontSize: 20, color: Colors.purple))
                           ],
                         ),
                         Padding(

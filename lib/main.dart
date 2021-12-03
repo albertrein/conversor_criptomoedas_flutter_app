@@ -26,7 +26,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Conversor Criptomoeda App',
       theme: ThemeData(
-        
+        textTheme: TextTheme(bodyText1: TextStyle(),).apply(
+          displayColor: Colors.black
+        ),
+        primaryColor: Colors.black,
+        backgroundColor: Colors.black
       ),
       home: const MyHomePage(title: 'Conversor Criptomoeda'),
     );

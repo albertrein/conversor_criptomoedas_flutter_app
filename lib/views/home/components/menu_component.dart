@@ -1,6 +1,8 @@
 import 'package:conversor_criptomoedas/views/pages/moedas_persistencia/moedas_persistencia_page.dart';
 import 'package:flutter/material.dart';
 
+import '../../pages/sobre/sobre.dart';
+
 class Menu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,9 @@ class Menu extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.class__outlined),
             title: const Text('Sobre'),
-            onTap: () => {},
+            onTap: ()async {
+              await Navigator.push(context, MaterialPageRoute(builder: (context) => Sobre()));  
+            },
           ),          
         ],
       ),

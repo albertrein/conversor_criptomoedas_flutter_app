@@ -61,6 +61,17 @@ class _MoedasPersistencia extends State<MoedasPersistencia> {
               ),
             ],
           ),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.restart_alt_outlined),
+              iconSize: 30,
+              onPressed: () {
+                setState(() {
+                  _future = moedaHelper.moedasOrdenadasPorSequencia();                  
+                });
+              },
+            )
+        ]
         ),
         backgroundColor: Colors.white,
         body: Container(

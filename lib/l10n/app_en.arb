@@ -9,5 +9,9 @@
   "brlTo" : "Converter BRL to",
   "brl" : "BRL",
   "emptyList" : "Empty list",
-  "loading" : "Loading"
+  "loading" : "Loading",
+  "registration" : "Coin registration",
+  "initials" : "Write the initials",
+  "coinName" : "Write the coin name",
+  "register" : "Register"
 }
