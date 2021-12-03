@@ -20,7 +20,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Widget>_controllerListMoedasBlocks = [];
   DatabaseHelper moedaHelper = DatabaseHelper();
  
-  List<Map<String, dynamic>> moedas = [
+  /*List<Map<String, dynamic>> moedas = [
     {'sigla':'BTC', 'nome': 'Bitcoin'},
     {'sigla':'ETH', 'nome':'Etherium'},
     {'sigla':'ETI', 'nome':'DOges'},
@@ -28,7 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
     {'sigla':'ADA', 'nome':'Cardano'},
     {'sigla':'UNI', 'nome':'Uniswap'},
     {'sigla':'USDC', 'nome':'USD Coin'},
-  ];
+  ];*/
 
   @override
   void initState() {

@@ -19,7 +19,7 @@ class MoedasPersistencia extends StatefulWidget {
 
 class _MoedasPersistencia extends State<MoedasPersistencia> {
   DatabaseHelper moedaHelper = DatabaseHelper();
-  List<Moeda> noteList = [];
+  List<Moeda> moedaList = [];
   late Future<List<Moeda>> _future;
 
   @override
@@ -92,7 +92,7 @@ class _MoedasPersistencia extends State<MoedasPersistencia> {
                               child: Text(AppLocalizations.of(context)!.emptyList),
                             );
                           }
-                          noteList = snapshot.data;
+                          moedaList = snapshot.data;
                           return ReorderableListView(
                             children: List.generate(
                               snapshot.data.length,
@@ -123,7 +123,7 @@ class _MoedasPersistencia extends State<MoedasPersistencia> {
                                 );
                               },
                             ).toList(),
-                            onReorder: _onReorder,
+                            onReorder: _onReordenamento,
                           );
                         }
                       }
@@ -133,22 +133,23 @@ class _MoedasPersistencia extends State<MoedasPersistencia> {
           )),
           floatingActionButton: FloatingActionButton(
             onPressed: (){ Navigator.push(context, MaterialPageRoute(builder: (context) => NovaMoeda())); },
-            child: Icon(Icons.add),
+            child: Icon(Icons.add,),
+            backgroundColor: Colors.black,
           ),
       ),
     );
   }
-  void _onReorder(int oldIndex, int newIndex) async {
-    if (newIndex > noteList.length) newIndex = noteList.length;
+  void _onReordenamento(int oldIndex, int newIndex) async {
+    if (newIndex > moedaList.length) newIndex = moedaList.length;
     if (oldIndex < newIndex) newIndex -= 1;
-    final Moeda item = noteList[oldIndex];
-    final Moeda itemNovo = noteList[newIndex];
+    final Moeda item = moedaList[oldIndex];
+    final Moeda itemNovo = moedaList[newIndex];
 
     await moedaHelper.alteraSequenciaMoedas(item, newIndex);
     await moedaHelper.alteraSequenciaMoedas(itemNovo, oldIndex);
     setState(() {      
-      noteList.removeAt(oldIndex);
-      noteList.insert(newIndex, item);
+      moedaList.removeAt(oldIndex);
+      moedaList.insert(newIndex, item);
       _future = moedaHelper.moedasOrdenadasPorSequencia();
     });
   }

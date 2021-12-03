@@ -16,12 +16,12 @@ class MercadoBitcoinBloc{
     CriptoMoeda response = await apiCriptomoedaBitcoin.getTickerCoin();
     response.siglaMoeda = siglaNomeMoeda[0];
     response.nomeMoeda = siglaNomeMoeda[1];
-    response.imagemMoeda = await getDevIcon(siglaNomeMoeda[1]);
+    response.imagemMoeda = await getImagemIcone(siglaNomeMoeda[1]);
     return response;
   }
 }
 
-Future<String> getDevIcon(String nomeMoeda) async {
+Future<String> getImagemIcone(String nomeMoeda) async {
   String imageLocation = "assets/images/";
   try {
     await rootBundle.load(imageLocation+nomeMoeda+".png");
