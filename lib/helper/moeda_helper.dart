@@ -22,12 +22,19 @@ class DatabaseHelper {
     return openDatabase(
       join(path, 'biblioteca_database.db'),
       onCreate: (db, version) {
-        return db.execute(
+        db.execute(
           'Create table tbmoedas('
           'sigla TEXT PRIMARY KEY,'
           'nome TEXT,'
           'sequencia INTEGER)'
         );
+        db.execute("INSERT INTO tbmoedas(sigla, nome, sequencia) VALUES ('BTC', 'Bitcoin') ");
+        db.execute("INSERT INTO tbmoedas(sigla, nome, sequencia) VALUES ('ETH', 'Etherium') ");
+        db.execute("INSERT INTO tbmoedas(sigla, nome, sequencia) VALUES ('ETI', 'DOges') ");
+        db.execute("INSERT INTO tbmoedas(sigla, nome, sequencia) VALUES ('LTC', 'Litecoin') ");
+        db.execute("INSERT INTO tbmoedas(sigla, nome, sequencia) VALUES ('ADA', 'Cardano') ");
+        db.execute("INSERT INTO tbmoedas(sigla, nome, sequencia) VALUES ('UNI', 'Uniswap') ");
+        return db.execute("INSERT INTO tbmoedas(sigla, nome, sequencia) VALUES ('USDC', 'USD Coin') ");
       },
       version: 1,
     );
