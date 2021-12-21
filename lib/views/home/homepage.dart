@@ -1,3 +1,4 @@
+import 'package:conversor_criptomoedas/helper/theme/theme_helper.dart';
 import 'package:conversor_criptomoedas/models/criptomoeda_model.dart';
 import 'package:conversor_criptomoedas/views/home/components/menu_component.dart';
 import 'package:flutter/material.dart';
@@ -19,12 +20,13 @@ class _MyHomePageState extends State<MyHomePage> {
   MercadoBitcoinBloc bloc = MercadoBitcoinBloc();
   List<Widget>_controllerListMoedasBlocks = [];
   DatabaseHelper moedaHelper = DatabaseHelper();
+  Color ?appBarBackgroundColor;
 
   @override
-  void initState() {
+  void initState() async{
     _inicializaBlocosMoedas();
     _controllerListMoedasBlocks.add(_circularLoading());
-    
+    appBarBackgroundColor = await ThemeConfig.getAppBarBackgroundColor;
   }
 
   void _inicializaBlocosMoedas()async {
@@ -51,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
       drawer: Menu(),
       appBar: AppBar(
         title: Text(widget.title),
-        backgroundColor: Colors.purple,
+        backgroundColor: appBarBackgroundColor,
         actions: [
           IconButton(
               icon: const Icon(Icons.restart_alt_outlined, color: Colors.white,),
