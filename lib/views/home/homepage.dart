@@ -19,16 +19,6 @@ class _MyHomePageState extends State<MyHomePage> {
   MercadoBitcoinBloc bloc = MercadoBitcoinBloc();
   List<Widget>_controllerListMoedasBlocks = [];
   DatabaseHelper moedaHelper = DatabaseHelper();
- 
-  /*List<Map<String, dynamic>> moedas = [
-    {'sigla':'BTC', 'nome': 'Bitcoin'},
-    {'sigla':'ETH', 'nome':'Etherium'},
-    {'sigla':'ETI', 'nome':'DOges'},
-    {'sigla':'LTC', 'nome':'Litecoin'},
-    {'sigla':'ADA', 'nome':'Cardano'},
-    {'sigla':'UNI', 'nome':'Uniswap'},
-    {'sigla':'USDC', 'nome':'USD Coin'},
-  ];*/
 
   @override
   void initState() {
