@@ -23,10 +23,10 @@ class _MyHomePageState extends State<MyHomePage> {
   Color ?appBarBackgroundColor;
 
   @override
-  void initState() async{
+  void initState(){
     _inicializaBlocosMoedas();
     _controllerListMoedasBlocks.add(_circularLoading());
-    appBarBackgroundColor = await ThemeConfig.getAppBarBackgroundColor;
+    appBarBackgroundColor = Colors.purple;
   }
 
   void _inicializaBlocosMoedas()async {
