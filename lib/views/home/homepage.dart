@@ -48,7 +48,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
+    /*setState(() async {
+      appBarBackgroundColor =  await ThemeConfig.getAppBarBackgroundColor;
+    });*/
     return Scaffold(
       drawer: Menu(),
       appBar: AppBar(

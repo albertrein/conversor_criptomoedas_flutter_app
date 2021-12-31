@@ -1,24 +1,27 @@
+import 'package:conversor_criptomoedas/helper/theme/theme_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:path/path.dart';
 
-class TemaConfig extends StatelessWidget{
+
+class TemaConfigPage extends StatelessWidget{
   Color pickerColor = Color(0xff443a49);
   Color currentColor = Color(0xff443a49);
+  ThemeConfig configTema = ThemeConfig();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add a Reminder'),
+        title: const Text('Configuração do Tema'),
       ),
-      body: 
-        Container(
-          child: OutlinedButton(
-          onPressed: () {
-            _showMaterialDialog(context);
+      body: Container(
+        child: OutlinedButton(
+          onPressed: () async {
+            currentColor = await ThemeConfig.getAppBarBackgroundColor;
+            _showMaterialDialog(context, ConfigItens.setAppBarBackgroundColor);
           },
-          child: const Text('Open Dialog'),
+          child: const Text('Alterar cor de fundo da app bar'),
         ),
       )
     );
@@ -26,32 +29,33 @@ class TemaConfig extends StatelessWidget{
 
   Widget _dialogBuilder(){
     return ColorPicker(
-      pickerColor: pickerColor,
+      pickerColor: currentColor,
       onColorChanged: (color) {
-          //recebe a cor selecionada
+        pickerColor = color;
       },
     );
   }
-  void _showMaterialDialog(context) {
+  void _showMaterialDialog(context, enumConfigThemeType) {
     showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text('Material Dialog'),
-            content: Text('Hey! I am Coflutter!'),
+            title: const Text('Escolha a nova cor'),
             actions: <Widget>[
               _dialogBuilder(),
               TextButton(
-                  onPressed: () {
-                   
-                  },
-                  child: Text('Close')),
-              TextButton(
                 onPressed: () {
-                  print('HelloWorld!');
-                  
+                  pickerColor = Color(0xff443a49);
+                  currentColor = Color(0xff443a49);
+                  Navigator.pop(context);
                 },
-                child: Text('HelloWorld!'),
+                child: const Text('Fechar')),
+              TextButton(
+                onPressed: () async {                  
+                  configTema.setNewColor(enumConfigThemeType, pickerColor.value);
+                  Navigator.pop(context);
+                },
+                child: const Text('Salvar'),
               )
             ],
           );

@@ -27,7 +27,7 @@ class Menu extends StatelessWidget {
             leading: const Icon(Icons.align_vertical_center_sharp),
             title: const Text('Ajustes tema'),
             onTap: () async => {
-              await Navigator.push(context, MaterialPageRoute(builder: (context) => TemaConfig()))
+              await Navigator.push(context, MaterialPageRoute(builder: (context) => TemaConfigPage()))
             },
           ),
           ListTile(
