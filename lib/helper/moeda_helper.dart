@@ -28,13 +28,13 @@ class DatabaseHelper {
           'nome TEXT,'
           'sequencia INTEGER)'
         );
-        db.execute("INSERT INTO tbmoedas(sigla, nome, sequencia) VALUES ('BTC', 'Bitcoin') ");
-        db.execute("INSERT INTO tbmoedas(sigla, nome, sequencia) VALUES ('ETH', 'Etherium') ");
-        db.execute("INSERT INTO tbmoedas(sigla, nome, sequencia) VALUES ('ETI', 'DOges') ");
-        db.execute("INSERT INTO tbmoedas(sigla, nome, sequencia) VALUES ('LTC', 'Litecoin') ");
-        db.execute("INSERT INTO tbmoedas(sigla, nome, sequencia) VALUES ('ADA', 'Cardano') ");
-        db.execute("INSERT INTO tbmoedas(sigla, nome, sequencia) VALUES ('UNI', 'Uniswap') ");
-        return db.execute("INSERT INTO tbmoedas(sigla, nome, sequencia) VALUES ('USDC', 'USD Coin') ");
+        db.execute("INSERT INTO tbmoedas(sigla, nome, sequencia) VALUES ('BTC', 'Bitcoin', 1) ");
+        db.execute("INSERT INTO tbmoedas(sigla, nome, sequencia) VALUES ('ETH', 'Etherium', 2) ");
+        db.execute("INSERT INTO tbmoedas(sigla, nome, sequencia) VALUES ('ETI', 'DOges', 3) ");
+        db.execute("INSERT INTO tbmoedas(sigla, nome, sequencia) VALUES ('LTC', 'Litecoin', 4) ");
+        db.execute("INSERT INTO tbmoedas(sigla, nome, sequencia) VALUES ('ADA', 'Cardano', 5) ");
+        db.execute("INSERT INTO tbmoedas(sigla, nome, sequencia) VALUES ('UNI', 'Uniswap', 6) ");
+        return db.execute("INSERT INTO tbmoedas(sigla, nome, sequencia) VALUES ('USDC', 'USD Coin', 7) ");
       },
       version: 1,
     );
