@@ -8,9 +8,10 @@ import 'package:conversor_criptomoedas/helper/moeda_helper.dart';
 import 'package:conversor_criptomoedas/models/moeda_model.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title, required this.colorBackgroundAppBar}) : super(key: key);
 
   final String title;
+  final int colorBackgroundAppBar;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -26,7 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState(){
     _inicializaBlocosMoedas();
     _controllerListMoedasBlocks.add(_circularLoading());
-    appBarBackgroundColor = Colors.purple;
+    appBarBackgroundColor = Color(widget.colorBackgroundAppBar);
   }
 
   void _inicializaBlocosMoedas()async {

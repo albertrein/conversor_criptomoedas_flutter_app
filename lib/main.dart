@@ -2,13 +2,27 @@ import 'package:conversor_criptomoedas/views/home/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'helper/theme/theme_helper.dart';
 
 void main() {
-  runApp(const MyApp());
+  //Color backgroundAppBarColor = await ThemeConfig.getAppBarBackgroundColor;
+  //Color backgroundAppBarColor = Color(4294967295);
+  //teste
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences.getInstance().then((instance) {
+    Color backgroundAppBarColor = Color((instance.getInt('appBarBackgroundColor') ?? 4294967295));
+    runApp(MyApp(backgroundAppBarColor: backgroundAppBarColor.value));
+  });
+
+  //runApp(MyApp(backgroundAppBarColor: backgroundAppBarColor.value));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key, required this.backgroundAppBarColor}) : super(key: key);
+
+  int backgroundAppBarColor;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +46,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.black,
         backgroundColor: Colors.black
       ),
-      home: const MyHomePage(title: 'Conversor Criptomoeda'),
+      home: MyHomePage(title: 'Conversor Criptomoeda', colorBackgroundAppBar: backgroundAppBarColor),
     );
   }
 }
