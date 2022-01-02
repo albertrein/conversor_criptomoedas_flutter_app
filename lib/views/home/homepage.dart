@@ -21,13 +21,11 @@ class _MyHomePageState extends State<MyHomePage> {
   MercadoBitcoinBloc bloc = MercadoBitcoinBloc();
   List<Widget>_controllerListMoedasBlocks = [];
   DatabaseHelper moedaHelper = DatabaseHelper();
-  Color ?appBarBackgroundColor;
 
   @override
   void initState(){
     _inicializaBlocosMoedas();
     _controllerListMoedasBlocks.add(_circularLoading());
-    appBarBackgroundColor = Color(widget.colorBackgroundAppBar);
   }
 
   void _inicializaBlocosMoedas()async {
@@ -50,14 +48,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context){
-    /*setState(() async {
-      appBarBackgroundColor =  await ThemeConfig.getAppBarBackgroundColor;
-    });*/
     return Scaffold(
       drawer: Menu(),
       appBar: AppBar(
         title: Text(widget.title),
-        backgroundColor: appBarBackgroundColor,
+        backgroundColor: Color(widget.colorBackgroundAppBar),
         actions: [
           IconButton(
               icon: const Icon(Icons.restart_alt_outlined, color: Colors.white,),

@@ -18,7 +18,7 @@ class TemaConfigPage extends StatelessWidget{
       body: Container(
         child: OutlinedButton(
           onPressed: () async {
-            currentColor = await ThemeConfig.getAppBarBackgroundColor;
+            currentColor = Color(await ThemeConfig.getAppBarBackgroundColor);
             _showMaterialDialog(context, ConfigItens.setAppBarBackgroundColor);
           },
           child: const Text('Alterar cor de fundo da app bar'),

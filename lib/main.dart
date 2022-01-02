@@ -6,17 +6,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'helper/theme/theme_helper.dart';
 
-void main() {
-  //Color backgroundAppBarColor = await ThemeConfig.getAppBarBackgroundColor;
-  //Color backgroundAppBarColor = Color(4294967295);
-  //teste
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferences.getInstance().then((instance) {
-    Color backgroundAppBarColor = Color((instance.getInt('appBarBackgroundColor') ?? 4294967295));
-    runApp(MyApp(backgroundAppBarColor: backgroundAppBarColor.value));
-  });
-
-  //runApp(MyApp(backgroundAppBarColor: backgroundAppBarColor.value));
+  int backgroundAppBarColor;
+  backgroundAppBarColor = await ThemeConfig.getAppBarBackgroundColor;
+  runApp(MyApp(backgroundAppBarColor: backgroundAppBarColor));
 }
 
 class MyApp extends StatelessWidget {
