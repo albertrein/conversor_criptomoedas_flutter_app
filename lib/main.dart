@@ -8,15 +8,19 @@ import 'helper/theme/theme_helper.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  int backgroundAppBarColor;
-  backgroundAppBarColor = await ThemeConfig.getAppBarBackgroundColor;
-  runApp(MyApp(backgroundAppBarColor: backgroundAppBarColor));
+  runApp(
+    MyApp(
+      backgroundAppBarColor: await ThemeConfig.getAppBarBackgroundColor,
+      backgroundBodyColor: await ThemeConfig.getBodyBackgroundColor,
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({Key? key, required this.backgroundAppBarColor}) : super(key: key);
+  MyApp({Key? key, required this.backgroundAppBarColor, required this.backgroundBodyColor}) : super(key: key);
 
   int backgroundAppBarColor;
+  int backgroundBodyColor;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +42,8 @@ class MyApp extends StatelessWidget {
           displayColor: Colors.black
         ),
         primaryColor: Colors.black,
-        backgroundColor: Colors.black
+        backgroundColor: Colors.black,
+        scaffoldBackgroundColor: Color(backgroundBodyColor)
       ),
       home: MyHomePage(title: 'Conversor Criptomoeda', colorBackgroundAppBar: backgroundAppBarColor),
     );

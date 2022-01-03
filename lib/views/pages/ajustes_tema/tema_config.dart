@@ -15,14 +15,27 @@ class TemaConfigPage extends StatelessWidget{
       appBar: AppBar(
         title: const Text('Configuração do Tema'),
       ),
-      body: Container(
-        child: OutlinedButton(
-          onPressed: () async {
-            currentColor = Color(await ThemeConfig.getAppBarBackgroundColor);
-            _showMaterialDialog(context, ConfigItens.setAppBarBackgroundColor);
-          },
-          child: const Text('Alterar cor de fundo da app bar'),
-        ),
+      body: Column(
+        children: [
+          Container(
+            child: OutlinedButton(
+              onPressed: () async {
+                currentColor = Color(await ThemeConfig.getAppBarBackgroundColor);
+                _showMaterialDialog(context, ConfigItens.setAppBarBackgroundColor);
+              },
+              child: const Text('Alterar cor de fundo da app bar'),
+            ),
+          ),
+          Container(
+            child: OutlinedButton(
+              onPressed: () async {
+                currentColor = Color(await ThemeConfig.getBodyBackgroundColor);
+                _showMaterialDialog(context, ConfigItens.setBodyBackgroundColor);
+              },
+              child: const Text('Alterar cor de fundo do corpo'),
+            ),
+          ),
+        ],
       )
     );
   }
