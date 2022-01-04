@@ -18,9 +18,9 @@ class ThemeConfig{
   static Future<int> get getAppBarBackgroundColor async {
     SharedPreferences configLocal = await SharedPreferences.getInstance();
     try{
-      return configLocal.getInt('appBarBackgroundColor') ?? 4294967295;
+      return configLocal.getInt('appBarBackgroundColor') ?? 4278190080;
     }on Exception{
-      return 4294967295;
+      return 4278190080;
     }
   }  
   void _setAppBarBackgroundColor(int novaCor) async {
@@ -31,9 +31,9 @@ class ThemeConfig{
   static Future<int> get getBodyBackgroundColor async {
     SharedPreferences configLocal = await SharedPreferences.getInstance();
     try{
-      return configLocal.getInt('bodyBackgroundColor') ?? 4294967295;
+      return configLocal.getInt('bodyBackgroundColor') ?? 4278190080;
     }on Exception{
-      return 4294967295;
+      return 4278190080;
     }
   }  
   void _setBodyBackgroundColor(int novaCor) async {

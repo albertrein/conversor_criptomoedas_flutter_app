@@ -8,8 +8,9 @@ import 'package:path/path.dart';
 import '../insercao_moedas/nova_moeda.dart';
 
 class MoedasPersistencia extends StatefulWidget {
-  
-  const MoedasPersistencia({Key? key}) : super(key: key);
+  int colorBackgroundAppBar;
+
+  MoedasPersistencia(this.colorBackgroundAppBar);
 
   @override
   State<StatefulWidget> createState() {
@@ -44,7 +45,7 @@ class _MoedasPersistencia extends State<MoedasPersistencia> {
       home: Scaffold(
         appBar: AppBar(
           elevation: 0,
-          backgroundColor: Colors.black,
+          backgroundColor: Color(widget.colorBackgroundAppBar),
           leading: Row(
             children: <Widget>[
               SizedBox(

@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 
 
 class Sobre extends StatelessWidget {
+  int colorBackgroundAppBar;
   TextEditingController _siglaController = TextEditingController();
   TextEditingController _nomeController = TextEditingController();
+
+  Sobre(this.colorBackgroundAppBar);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -11,7 +15,7 @@ class Sobre extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           elevation: 0,
-          backgroundColor: Colors.black,
+          backgroundColor: Color(colorBackgroundAppBar),
           leading: Row(
             children: <Widget>[
               SizedBox(

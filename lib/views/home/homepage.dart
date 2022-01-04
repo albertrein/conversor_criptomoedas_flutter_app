@@ -49,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      drawer: Menu(),
+      drawer: Menu(widget.colorBackgroundAppBar),
       appBar: AppBar(
         title: Text(widget.title),
         backgroundColor: Color(widget.colorBackgroundAppBar),
@@ -74,8 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
               if(snapshot.hasError){
                 return const Text("Error!");
               }
-              CriptoMoeda? moeda = snapshot.data;
-              
+              CriptoMoeda? moeda = snapshot.data;              
               if(!moeda!.isClassEmpty()){
                 _controllerListMoedasBlocks.add(MoedaBlock(moeda));                
               }              

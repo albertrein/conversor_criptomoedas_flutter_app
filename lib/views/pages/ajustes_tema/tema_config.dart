@@ -7,36 +7,59 @@ import 'package:path/path.dart';
 class TemaConfigPage extends StatelessWidget{
   Color pickerColor = Color(0xff443a49);
   Color currentColor = Color(0xff443a49);
+  int colorBackgroundAppBar;
   ThemeConfig configTema = ThemeConfig();
+
+  TemaConfigPage(this.colorBackgroundAppBar);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Configuração do Tema'),
+        backgroundColor: Color(colorBackgroundAppBar),
       ),
-      body: Column(
-        children: [
-          Container(
-            child: OutlinedButton(
-              onPressed: () async {
-                currentColor = Color(await ThemeConfig.getAppBarBackgroundColor);
-                _showMaterialDialog(context, ConfigItens.setAppBarBackgroundColor);
-              },
-              child: const Text('Alterar cor de fundo da app bar'),
+      body: Center(
+        child: Column(
+          children: [
+            Container(
+              child: OutlinedButton(
+                onPressed: () async {
+                  currentColor = Color(await ThemeConfig.getAppBarBackgroundColor);
+                  _showMaterialDialog(context, ConfigItens.setAppBarBackgroundColor);
+                },
+                child: const Text('Alterar cor de fundo da app bar'),
+                style: OutlinedButton.styleFrom(
+                  primary: Colors.white,
+                  backgroundColor: Colors.teal,
+                  minimumSize: Size(50, 30),
+                  textStyle: TextStyle(
+                    fontSize: 16
+                  )
+                ),
+              ),
             ),
-          ),
-          Container(
-            child: OutlinedButton(
-              onPressed: () async {
-                currentColor = Color(await ThemeConfig.getBodyBackgroundColor);
-                _showMaterialDialog(context, ConfigItens.setBodyBackgroundColor);
-              },
-              child: const Text('Alterar cor de fundo do corpo'),
+            Container(
+              child: OutlinedButton(
+                onPressed: () async {
+                  currentColor = Color(await ThemeConfig.getBodyBackgroundColor);
+                  _showMaterialDialog(context, ConfigItens.setBodyBackgroundColor);
+                },
+                child: const Text('Alterar cor de fundo do corpo'),
+                style: OutlinedButton.styleFrom(
+                  primary: Colors.white,
+                  backgroundColor: Colors.teal,
+                  minimumSize: Size(50, 30),
+                  textStyle: TextStyle(
+                    fontSize: 16
+                  )
+                ),
+              ),
+              
             ),
-          ),
-        ],
-      )
+          ],
+        ),
+      )      
     );
   }
 
