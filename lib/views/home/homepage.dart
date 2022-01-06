@@ -31,9 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _inicializaBlocosMoedas()async {
     List<Moeda> listaMoedas =  await moedaHelper.moedasOrdenadasPorSequencia();
-    print(listaMoedas);
     listaMoedas.forEach((element) {
-      print(element.sigla);
       bloc.entrada.add(element.sigla+','+element.nome);      
     });
     _controllerListMoedasBlocks.removeLast();
