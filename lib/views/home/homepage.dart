@@ -2,16 +2,17 @@ import 'package:conversor_criptomoedas/helper/theme/theme_helper.dart';
 import 'package:conversor_criptomoedas/models/criptomoeda_model.dart';
 import 'package:conversor_criptomoedas/views/home/components/menu_component.dart';
 import 'package:flutter/material.dart';
+import '../../models/theme_config_model.dart';
 import 'bloc/mercadobitcoin_bloc.dart';
 import 'components/bloco_moeda.dart';
 import 'package:conversor_criptomoedas/helper/moeda_helper.dart';
 import 'package:conversor_criptomoedas/models/moeda_model.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title, required this.colorBackgroundAppBar}) : super(key: key);
+  const MyHomePage({Key? key, required this.title, required this.dadosConfiguracaoTema}) : super(key: key);
 
   final String title;
-  final int colorBackgroundAppBar;
+  final ThemeConfigData dadosConfiguracaoTema;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -49,10 +50,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      drawer: Menu(widget.colorBackgroundAppBar),
+      drawer: Menu(widget.dadosConfiguracaoTema),
       appBar: AppBar(
         title: Text(widget.title),
-        backgroundColor: Color(widget.colorBackgroundAppBar),
+        backgroundColor: widget.dadosConfiguracaoTema.getBackgroundAppBarColor,
         actions: [
           IconButton(
               icon: const Icon(Icons.restart_alt_outlined, color: Colors.white,),

@@ -1,5 +1,6 @@
 import 'package:conversor_criptomoedas/helper/moeda_helper.dart';
 import 'package:conversor_criptomoedas/models/moeda_model.dart';
+import 'package:conversor_criptomoedas/models/theme_config_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -8,9 +9,9 @@ import 'package:path/path.dart';
 import '../insercao_moedas/nova_moeda.dart';
 
 class MoedasPersistencia extends StatefulWidget {
-  int colorBackgroundAppBar;
+  final ThemeConfigData dadosConfiguracaoTema;
 
-  MoedasPersistencia(this.colorBackgroundAppBar);
+  MoedasPersistencia(this.dadosConfiguracaoTema);
 
   @override
   State<StatefulWidget> createState() {
@@ -45,7 +46,7 @@ class _MoedasPersistencia extends State<MoedasPersistencia> {
       home: Scaffold(
         appBar: AppBar(
           elevation: 0,
-          backgroundColor: Color(widget.colorBackgroundAppBar),
+          backgroundColor: widget.dadosConfiguracaoTema.getBackgroundAppBarColor,
           leading: Row(
             children: <Widget>[
               SizedBox(

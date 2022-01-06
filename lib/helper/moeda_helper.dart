@@ -42,8 +42,6 @@ class DatabaseHelper {
 
   Future<int> insereMoeda(Moeda moeda) async {
     final db = await database;
-    print(">>");
-    print(moeda.toMap());
     return await db.insert(
       moedaTable,
       moeda.toMap(),

@@ -19,7 +19,7 @@ class ThemeConfigData{
     backgroundBodyColor = newBackgroundBodyColor;
   }
 
-  Color get getBackgroundAppBarColor => Color(backgroundBodyColor);
+  Color get getBackgroundAppBarColor => Color(backgroundAppBarColor);
   
   Color get getBackgroundBodyColor => Color(backgroundBodyColor);
   

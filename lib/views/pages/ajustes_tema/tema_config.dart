@@ -1,4 +1,5 @@
 import 'package:conversor_criptomoedas/helper/theme/theme_helper.dart';
+import 'package:conversor_criptomoedas/models/theme_config_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:path/path.dart';
@@ -7,17 +8,17 @@ import 'package:path/path.dart';
 class TemaConfigPage extends StatelessWidget{
   Color pickerColor = Color(0xff443a49);
   Color currentColor = Color(0xff443a49);
-  int colorBackgroundAppBar;
+  ThemeConfigData dadosConfiguracaoTema;
   ThemeConfig configTema = ThemeConfig();
 
-  TemaConfigPage(this.colorBackgroundAppBar);
+  TemaConfigPage(this.dadosConfiguracaoTema);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Configuração do Tema'),
-        backgroundColor: Color(colorBackgroundAppBar),
+        backgroundColor: dadosConfiguracaoTema.getBackgroundAppBarColor,
       ),
       body: Center(
         child: Column(

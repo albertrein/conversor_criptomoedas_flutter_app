@@ -13,6 +13,7 @@ void main() async{
     backgroundAppBarColor: await ThemeConfig.getAppBarBackgroundColor,
     backgroundBodyColor: await ThemeConfig.getBodyBackgroundColor
   );
+  
   runApp(    
     MyApp(dadosConfiguracaoTema: dadosTema)
   );
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.black,
         scaffoldBackgroundColor: dadosConfiguracaoTema.getBackgroundBodyColor
       ),
-      home: MyHomePage(title: 'Conversor Criptomoeda', colorBackgroundAppBar: 4278190080),
+      home: MyHomePage(title: 'Conversor Criptomoeda', dadosConfiguracaoTema: dadosConfiguracaoTema),
     );
   }
 }

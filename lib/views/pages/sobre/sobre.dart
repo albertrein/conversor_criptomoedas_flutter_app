@@ -1,12 +1,13 @@
+import 'package:conversor_criptomoedas/models/theme_config_model.dart';
 import 'package:flutter/material.dart';
 
 
 class Sobre extends StatelessWidget {
-  int colorBackgroundAppBar;
+  final ThemeConfigData dadosConfiguracaoTema;
   TextEditingController _siglaController = TextEditingController();
   TextEditingController _nomeController = TextEditingController();
 
-  Sobre(this.colorBackgroundAppBar);
+  Sobre(this.dadosConfiguracaoTema);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class Sobre extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           elevation: 0,
-          backgroundColor: Color(colorBackgroundAppBar),
+          backgroundColor: dadosConfiguracaoTema.getBackgroundAppBarColor,
           leading: Row(
             children: <Widget>[
               SizedBox(
