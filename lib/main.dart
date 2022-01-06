@@ -1,3 +1,4 @@
+import 'package:conversor_criptomoedas/models/theme_config_model.dart';
 import 'package:conversor_criptomoedas/views/home/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -8,19 +9,19 @@ import 'helper/theme/theme_helper.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(
-    MyApp(
-      backgroundAppBarColor: await ThemeConfig.getAppBarBackgroundColor,
-      backgroundBodyColor: await ThemeConfig.getBodyBackgroundColor,
-    )
+  ThemeConfigData dadosTema = ThemeConfigData.initializer(
+    backgroundAppBarColor: await ThemeConfig.getAppBarBackgroundColor,
+    backgroundBodyColor: await ThemeConfig.getBodyBackgroundColor
+  );
+  runApp(    
+    MyApp(dadosConfiguracaoTema: dadosTema)
   );
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({Key? key, required this.backgroundAppBarColor, required this.backgroundBodyColor}) : super(key: key);
+  MyApp({Key? key, required this.dadosConfiguracaoTema}) : super(key: key);
 
-  int backgroundAppBarColor;
-  int backgroundBodyColor;
+  ThemeConfigData dadosConfiguracaoTema;
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +44,9 @@ class MyApp extends StatelessWidget {
         ),
         primaryColor: Colors.black,
         backgroundColor: Colors.black,
-        scaffoldBackgroundColor: Color(backgroundBodyColor)
+        scaffoldBackgroundColor: dadosConfiguracaoTema.getBackgroundBodyColor
       ),
-      home: MyHomePage(title: 'Conversor Criptomoeda', colorBackgroundAppBar: backgroundAppBarColor),
+      home: MyHomePage(title: 'Conversor Criptomoeda', colorBackgroundAppBar: 4278190080),
     );
   }
 }
