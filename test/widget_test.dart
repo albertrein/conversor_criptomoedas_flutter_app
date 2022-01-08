@@ -5,6 +5,7 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
+import 'package:conversor_criptomoedas/models/theme_config_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -12,8 +13,10 @@ import 'package:conversor_criptomoedas/main.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp(backgroundAppBarColor: 123, backgroundBodyColor: 123 ));
+    
+    ThemeConfigData dadosTema = ThemeConfigData(213,123);
+    
+    await tester.pumpWidget(MyApp( dadosConfiguracaoTema: dadosTema));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
